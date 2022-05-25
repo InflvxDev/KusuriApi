@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Kusuri.Employees.Application.Create;
+using Kusuri.Employees.Application.FindAll;
 
 namespace Employees.Api.Controllers;
 
@@ -20,5 +21,12 @@ public class EmployeeController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetEmployees([FromQuery]FindAllEmployeesQuery query)
+    {
+        var employees = await _mediator.Send(query);
+        return (employees == null) ? NotFound() :  Ok(employees);
     }
 }

@@ -6,6 +6,8 @@ public interface IRepository<TEntity, in TKey> where TEntity : class {
     Task Save(TEntity entity);
     Task<TEntity?> Find(TKey key, bool noTracking);
     Task<TEntity?> Find(TKey key);
+    Task<IEnumerable<TEntity>> SearchAll();
+    Task<IEnumerable<TEntity>> SearchAll(Expression<Func<TEntity, bool>> predicate);
     Task<bool> Any(Expression<Func<TEntity, bool>> predicate);
     Task Delete(TEntity entity);
 }

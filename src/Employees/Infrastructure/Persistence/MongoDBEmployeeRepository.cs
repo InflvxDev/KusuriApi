@@ -32,6 +32,11 @@ public class MongoDBEmployeeRepository : IEmployeeRepository
         return await _employees.Find(x => x.Id == key).FirstOrDefaultAsync();
     }
 
+    public async Task<IEnumerable<Employee>> Find()
+    {
+        return await _employees.Find(employee => true).ToListAsync();
+    }
+
     public async Task<bool> Any(Expression<Func<Employee, bool>> predicate)
     {
         return await _employees.Find(predicate).AnyAsync();
