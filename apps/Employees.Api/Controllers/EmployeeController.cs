@@ -25,9 +25,9 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetEmployees([FromQuery]FindAllEmployeesQuery query)
+    public async Task<IActionResult> GetEmployees()
     {
-        var employees = await _mediator.Send(query);
+        var employees = await _mediator.Send(new FindAllEmployeesQuery());
         return (employees == null) ? NotFound() :  Ok(employees);
     }
 

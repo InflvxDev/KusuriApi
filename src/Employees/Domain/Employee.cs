@@ -13,7 +13,8 @@ public class Employee
     public string Email { get; set; } = default!;
     public string Phone { get; set; } = default!;
     public string Address { get; set; } = default!;
-    public string Gender { get; set; } = default!;
+    public string JobID { get; set; } = default!;
+    public string Salary { get; set; } = default!;
 
     public Employee()
     {
